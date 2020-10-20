@@ -1,5 +1,5 @@
 </div>
-<footer id="footer" class="">
+<footer id="footer">
 <div id="copyright" class="bg-dark text-white p-2">
 &copy; <?php echo esc_html( date_i18n( __( 'Y', 'blankslate' ) ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 </div>
