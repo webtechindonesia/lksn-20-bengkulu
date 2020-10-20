@@ -4,19 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-areas: "site site nav1 nav2 nav2 nav3"
+                                "post post post post side side"
+                                "meta content content content side side"
+                                "meta content content content ads ads"
+                                "meta image image image ads ads"
+                                "meta image image image other other"
+                                "footer footer footer footer footer footer";
+        }
+
+    </style>
 </head>
 <body>
-    <div id="site">Site Title</div>
-    <div id="nav1">nav1</div>
-    <div id="nav2">nav2</div>
-    <div id="nav3">nav3</div>
-    <div id="post"d>Post Title</div>
-    <div id="side">SideBar</div>
-    <div id="postmeta">Post Meta</div>
-    <div id="main_content">Main Content</div>
-    <div id="main_content_image">main content image</div>
-    <div id="ads">ads</div>
-    <div id="other">other stuffs</div>
-    <div id="stuff">@2018 footer</div>
+    <div id="container">
+        <div id="site" style="background-color: #FFD701; grid-area: site; height: 50px;">Site Title</div>
+        <div id="nav1" style="background-color: #FFC0CB; grid-area: nav1;">nav1</div>
+        <div id="nav2" style="background-color: #FFC0CB; grid-area: nav2; grid-template-columns: 1ap;">nav2</div>
+        <div id="nav3" style="background-color: #FFC0CB; grid-area: nav3;">nav3</div>
+        <div id="post" style="background-color: #ADD8E6; grid-area: post;">Post Title</div>
+        <div id="side" style="background-color: #FFAB40; grid-area: side;">SideBar</div>
+        <div id="postmeta" style="background-color: #90EE90; grid-area: meta;">Post Meta</div>
+        <div id="main_content" style="background-color: #D3D3D3; grid-area: content;">Main Content</div>
+        <div id="main_content_image" style="background-color: #FEFF00; grid-area: image;">main content image</div>
+        <div id="ads" style="background-color: #018000; grid-area: ads;">ads</div>
+        <div id="other" style="background-color: #E040FB; grid-area: other;">other stuffs</div>
+        <div id="stuff" style="background-color: #A1887F; grid-area: footer;">@2018 footer</div>
+    </div>
 </body>
 </html>
