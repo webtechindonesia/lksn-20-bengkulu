@@ -9,15 +9,15 @@
 <body <?php body_class(); ?>>
 <div id="wrapper" class="hfeed" class="container">
 <header id="header" style="background-color: #280557;">
-    <div class="container">
-        <div id="branding" class="d-inline-block">
-        <div id="site-title">
-        <?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '<h1>'; } ?>
-        <a class="text-white text-decoration-none" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
-        <?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '</h1>'; } ?>
+    <div class="container d-flex justify-content-between">
+        <div id="branding" class="d-inline-block ">
+            <div id="site-title">
+            <?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '<h1>'; } ?>
+            <a class="text-white text-decoration-none" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+            <?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '</h1>'; } ?>
+            </div>
         </div>
-        </div>
-        <nav id="menu" class="d-inline-block">
+        <nav id="menu" class="d-flex align-items-center">
             <a href="/" class="text-white mr-3">Home</a>
             <a href="" class="text-white">Our Category</a>
         </nav>
