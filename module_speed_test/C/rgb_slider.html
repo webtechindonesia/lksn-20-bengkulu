@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body >
+<div style="margin: auto;">
+    <div id="rgb"> 
+        RGB(0,0,0)
+    </div>
+    <div>
+        <input type="range" name="" id="red" min="0" max="255"  value="0">
+    </div>
+    <div>
+                <input type="range" name="" id="green" min="0" max="255" value="0">
+    </div>
+    <div>
+        <input type="range" name="" id="blue" min="0" max="255" value="0">
+    </div>
+</div>
+    <script>
+        document.body.style.backgroundColor = 'rgb(0,0,0)'
+        var red_range = document.getElementById('red')
+        var green_rannge = document.getElementById('green')
+        var blue_range = document.getElementById('blue')
+
+        red_range.addEventListener('input',edit_bg)
+        green_rannge.addEventListener('input',edit_bg)
+        blue_range.addEventListener('input',edit_bg)
+
+        function edit_bg(){
+            var rgb = `rgb(${red_range.value},${green_rannge.value},${blue_range.value})`
+            document.body.style.backgroundColor = rgb
+            document.querySelector('#rgb').textContent = `RGB(${red_range.value},${green_rannge.value},${blue_range.value})`
+        }
+    </script>
+</body>
+</html>
