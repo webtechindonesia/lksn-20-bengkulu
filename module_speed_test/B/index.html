@@ -14,8 +14,12 @@
                                 "meta image image image ads ads"
                                 "meta image image image other other"
                                 "footer footer footer footer footer footer";
+            grid-template-columns: 1fr 1fr 1fr 0.8fr 0.2fr 1fr;
+            grid-template-rows: 1fr;
         }
-
+        div{
+            border: white 2px solid;
+        }
     </style>
 </head>
 <body>
@@ -24,14 +28,14 @@
         <div id="nav1" style="background-color: #FFC0CB; grid-area: nav1;">nav1</div>
         <div id="nav2" style="background-color: #FFC0CB; grid-area: nav2; grid-template-columns: 1ap;">nav2</div>
         <div id="nav3" style="background-color: #FFC0CB; grid-area: nav3;">nav3</div>
-        <div id="post" style="background-color: #ADD8E6; grid-area: post;">Post Title</div>
+        <div id="post" style="background-color: #ADD8E6; grid-area: post; height: 50px;">Post Title</div>
         <div id="side" style="background-color: #FFAB40; grid-area: side;">SideBar</div>
         <div id="postmeta" style="background-color: #90EE90; grid-area: meta;">Post Meta</div>
-        <div id="main_content" style="background-color: #D3D3D3; grid-area: content;">Main Content</div>
-        <div id="main_content_image" style="background-color: #FEFF00; grid-area: image;">main content image</div>
+        <div id="main_content" style="background-color: #D3D3D3; grid-area: content; height: 150px;">Main Content</div>
+        <div id="main_content_image" style="background-color: #FEFF00; grid-area: image; height: 150px;">main content image</div>
         <div id="ads" style="background-color: #018000; grid-area: ads;">ads</div>
-        <div id="other" style="background-color: #E040FB; grid-area: other;">other stuffs</div>
-        <div id="stuff" style="background-color: #A1887F; grid-area: footer;">@2018 footer</div>
+        <div id="other" style="background-color: #E040FB; grid-area: other;height: 100px;">other stuffs</div>
+        <div id="stuff" style="background-color: #A1887F; grid-area: footer; height:70px;">@2018 footer</div>
     </div>
 </body>
 </html>
