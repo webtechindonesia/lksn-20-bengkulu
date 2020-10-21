@@ -2,7 +2,7 @@
     <div>
         <navbar></navbar>
     <div class="container mt-3">
-        <div class="card" >
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Makan gratis tiap hari apa?</h5>
                 <h6 class="card-subtitle mb-2 text-muted">created by: hr_2 | deadline: 11/18/2020,8:14:58 PM</h6>
@@ -63,7 +63,25 @@
     
 </template>
 <script>
+import axios from "axios"
 export default {
-    
+    data() {
+        return {
+            data_polling : []
+        }
+    },
+    mounted() {
+        this.polling()
+    },
+    methods: {
+        async polling(){
+            try{
+                let respon = await axios.get('http://139.59.108.33:10018/api/poll',{  headers: { Authorization: 'Bearer ' + localStorage.token}})
+                this.data_polling = respon.data
+            }catch(e){
+                console.log(e)
+            }
+        }
+    },
 }
 </script>
