@@ -36,7 +36,8 @@ Route::group([
 ], function ($router) {
 
     Route::group(['middleware' => 'admin'],function(){
-        Route::post('/', 'AuthController@login');
+        Route::post('/', 'PollController@store');
+        Route::get('/', 'PollController@index');
     });
 
 });
