@@ -42,13 +42,19 @@ export default {
             errors: ''
         }
     },
-    methods: {
+    methods: {  
         async login(){
             try{
+                let username = document.getElementById('username')
+                let password = document.getElementById('password')
                 let login = await axios.post('http://139.59.108.33:10018/api/auth/login',this.form);
                 let token = login.data.access_token
                 localStorage.setItem('token',token)
                 this.errors = ''
+                if(username.value === password.value){
+                    return this.$router.push({ name: 'Password'});
+                }
+                this.$router.push({ name: 'Polling'});
             }catch(e){
                 this.errors = e.response.statusText;
             }

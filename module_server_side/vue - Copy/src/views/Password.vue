@@ -4,7 +4,7 @@
             {{errors}}
         </div>
         <div class="d-flex justify-content-center">
-            <form action="" method="post" @submit.prevent="reset">
+            <form action="" method="post" @submit.prevent="reset" class="mt-5">
                 <div class="form-group">
                     <label for="old_password">Old Passwords</label>
                     <input type="password" class="form-control" id="old_password" placeholder="Enter Old Password" v-model="form.old_password">
@@ -50,6 +50,7 @@ export default {
             }
             try{
                 await axios.post('http://139.59.108.33:10018/api/auth/reset_password',this.form,{  headers: { Authorization: 'Bearer ' + localStorage.token}})
+                this.$router.push({ name: 'Login'});
             }catch(e){
                 this.theErrors = e.response.data.errors;
             }
