@@ -15,6 +15,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(auth()->user() || auth()->user()->role === 'admin'){
+            return $next($request);
+        }
+        return abort(403,'hanya admin');
     }
 }
