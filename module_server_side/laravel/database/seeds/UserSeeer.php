@@ -50,8 +50,8 @@ class UserSeeer extends Seeder
         for($i=19; $i <= 21; $i++){
             User::create([
                 'id' => $i,
-                'username' => 'hr_'.$i,
-                'password' => bcrypt('hr_'.$i++),
+                'username' => 'hr_'.$x,
+                'password' => bcrypt('hr_'.$x++),
                 'role' => 'user',
                 'division_id' => Division::where('name', 'HR')->first()->id
             ]);

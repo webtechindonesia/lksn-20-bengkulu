@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -24,7 +26,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -79,5 +81,24 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
+    }
+
+    public function reset(Request $request)
+    {
+        $this->validate($request,[
+            'old_password' => 'required',
+            'new_password' => 'required',
+        ]);
+        if (! $token = auth()->attempt(['username' => auth()->user()->username,'password' => $request->old_password])) {
+            return response()->json(['message' => 'old password did not match'], 422);
+        }
+
+        $user = User::find(auth()->id());
+        $user->update([
+            'password' => bcrypt($request->new_password)
+        ]);
+        auth()->logout();
+        return response()->json(['message' => 'reset success, user logged out']);
+
     }
 }
