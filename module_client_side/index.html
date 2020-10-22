@@ -45,7 +45,7 @@
             </div>
             <div>
                 <h3>Time</h3>
-                <h3 id="time">0:00:00</h3>
+                <h3 id="time">0 : 00 : 00</h3>
             </div>
         </div>
         <div class="flex justify-center canvas">
@@ -64,6 +64,10 @@
                 var waktu = 0;
                 var detik= 0;
                 var batas_detik = 4;
+                var jam = 3600;
+                var minute = 60;
+                context.fillStyle='green';
+                    context.fillRect(0,0,width_board,height_board);
                  function mulai(){
                      klik = "kanan"
                      create_python()
@@ -75,7 +79,6 @@
                      loop = setInterval(gambar,1000/4)
                  }
 
-                 mulai()
 
                  function create_python(){
                      var cell_badan = 6;
@@ -131,7 +134,7 @@
                         }else if(nx == makanan2.x && ny==makanan2.y){
                             var tambah_badan = {x:nx,y:ny}
                             nilai++
-                            makanan1 = create_makanan()
+                            makanan2 = create_makanan()
                         }else{
                             var tambah_badan = badan.pop()
                             tambah_badan.x = nx
@@ -153,7 +156,11 @@
                         gambar_badan(makanan1.x,makanan1.y)
                         gambar_badan(makanan2.x,makanan2.y)
                         document.getElementById('score').innerHTML = nilai
-                        document.getElementById('time').innerHTML = waktu
+                        minute = Math.floor(waktu / 60);
+                        jam = Math.floor(waktu / 3600);
+                        let seconds = waktu - minute * 60;
+                        waktu = waktu - jam * 3600;
+                        document.getElementById('time').innerHTML = jam + ' : ' + (minute < 10 ? '0' + minute : minute) + ' : ' + (seconds < 10 ? '0' + seconds : seconds)
                  }
 
                  function gambar_badan(x,y){
@@ -178,6 +185,9 @@
                         else if(keyboard == "40" && klik != "atas") klik = "bawah";
 
                  })
+
+                var alert_o = window.alert('mulai')
+                mulai()
             </script>
         </div>
     </div>
