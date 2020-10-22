@@ -66,6 +66,8 @@
                      klik = "kanan"
                      create_python()
                      create_makanan()
+                     create_makanan()
+                     create_makanan()
                      nilai = 0
                      if(typeof loop != 'undefined')clearInterval(loop);
                      loop = setInterval(gambar,1000/4)
@@ -116,22 +118,23 @@
                             ny = 0
                         }
                         for(a=0; a < makanan.length; a++){
-                            if(nx == makanan.x && ny==makanan.y){
+                            if(nx == makanan[a].x && ny==makanan[a].y){
                             var tambah_badan = {x:nx,y:ny}
+                            delete makanan[a]
                             nilai++
                             create_makanan()
-                        }else{
-                            var tambah_badan = badan.pop()
-                            tambah_badan.x = nx
-                            tambah_badan.y = ny
-                        }
-                        badan.unshift(tambah_badan)
-
-                        for(i=0;i<badan.length;i++){
-                            var c = badan[i]
-                            gambar_badan(c.x,c.y)
-                        }
-                        gambar_badan(makanan.x,makanan.y)
+                            var logic_makanan = true
+                            }else{
+                                var tambah_badan = badan.pop()
+                                tambah_badan.x = nx
+                                tambah_badan.y = ny
+                            }
+                            badan.unshift(tambah_badan)
+                            gambar_badan(makanan[a].x,makanan[a].y)
+                            for(i=0;i<badan.length;i++){
+                                var c = badan[i]
+                                gambar_badan(c.x,c.y)
+                            }
                         }
                         detik++
                         if(detik == batas_detik){
