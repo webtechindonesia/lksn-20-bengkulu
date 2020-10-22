@@ -57,7 +57,9 @@
                 var height_board = canvas.scrollHeight
                 var ukuran_kotak = 20;
                 var klik;
-                var makanan = []
+                var makanan;
+                var makanan1;
+                var makanan2;
                 var nilai;
                 var waktu = 0;
                 var detik= 0;
@@ -65,9 +67,9 @@
                  function mulai(){
                      klik = "kanan"
                      create_python()
-                     create_makanan()
-                     create_makanan()
-                     create_makanan()
+                     makanan = create_makanan()
+                     makanan1 = create_makanan()
+                     makanan2 = create_makanan()
                      nilai = 0
                      if(typeof loop != 'undefined')clearInterval(loop);
                      loop = setInterval(gambar,1000/4)
@@ -85,10 +87,10 @@
                  }
 
                  function create_makanan(){
-                     makanan.push({
+                     return {
                          x: Math.round(Math.random() * (width_board - ukuran_kotak) / ukuran_kotak),
                          y: Math.round(Math.random() * (height_board - ukuran_kotak) / ukuran_kotak)
-                     })
+                     }
                  }
 
                  function gambar(){
@@ -117,30 +119,39 @@
                         }else if(ny == height_board / ukuran_kotak){
                             ny = 0
                         }
-                        for(a=0; a < makanan.length; a++){
-                            if(nx == makanan[a].x && ny==makanan[a].y){
+
+                        if(nx == makanan.x && ny==makanan.y){
                             var tambah_badan = {x:nx,y:ny}
-                            delete makanan[a]
                             nilai++
-                            create_makanan()
-                            var logic_makanan = true
-                            }else{
-                                var tambah_badan = badan.pop()
-                                tambah_badan.x = nx
-                                tambah_badan.y = ny
-                            }
-                            badan.unshift(tambah_badan)
-                            gambar_badan(makanan[a].x,makanan[a].y)
-                            for(i=0;i<badan.length;i++){
-                                var c = badan[i]
-                                gambar_badan(c.x,c.y)
-                            }
+                            makanan = create_makanan()
+                        }else if(nx == makanan1.x && ny==makanan1.y ){
+                            var tambah_badan = {x:nx,y:ny}
+                            nilai++
+                            makanan1 = create_makanan()
+                        }else if(nx == makanan2.x && ny==makanan2.y){
+                            var tambah_badan = {x:nx,y:ny}
+                            nilai++
+                            makanan1 = create_makanan()
+                        }else{
+                            var tambah_badan = badan.pop()
+                            tambah_badan.x = nx
+                            tambah_badan.y = ny
+                        }
+                        badan.unshift(tambah_badan)
+
+                        for(i=0;i<badan.length;i++){
+                            var c = badan[i]
+                            gambar_badan(c.x,c.y)
                         }
                         detik++
                         if(detik == batas_detik){
                             batas_detik += 4
                             waktu++
                         }
+                        
+                        gambar_badan(makanan.x,makanan.y)
+                        gambar_badan(makanan1.x,makanan1.y)
+                        gambar_badan(makanan2.x,makanan2.y)
                         document.getElementById('score').innerHTML = nilai
                         document.getElementById('time').innerHTML = waktu
                  }
