@@ -57,15 +57,18 @@
                 var height_board = canvas.scrollHeight
                 var ukuran_kotak = 20;
                 var klik;
-                var makanan;
+                var makanan = [];
                 var nilai;
-                var waktu;
+                var waktu = 0;
+                var detik= 0;
+                var batas_detik = 4;
                  function mulai(){
                      klik = "kanan"
                      create_python()
                      create_makanan()
                      nilai = 0
-                     setInterval(gambar,66)
+                     if(typeof loop != 'undefined')clearInterval(loop);
+                     loop = setInterval(gambar,1000/4)
                  }
 
                  mulai()
@@ -80,10 +83,10 @@
                  }
 
                  function create_makanan(){
-                     makanan = {
+                     makanan.push({
                          x: Math.round(Math.random() * (width_board - ukuran_kotak) / ukuran_kotak),
                          y: Math.round(Math.random() * (height_board - ukuran_kotak) / ukuran_kotak)
-                     }
+                     })
                  }
 
                  function gambar(){
@@ -101,16 +104,28 @@
                         ){
                             mulai()
                             return 
+                        }else if(nx == -1){
+                            nx = width_board / ukuran_kotak
+                        }else if(                          
+                            nx == width_board / ukuran_kotak
+                        ){
+                            nx = 0
+                        }else if(ny == -1 ){
+                            ny = height_board / ukuran_kotak
+                        }else if(ny == height_board / ukuran_kotak){
+                            ny = 0
                         }
 
-                        if(nx == makanan.x && ny==makanan.y){
-                            var tambah_badan = {x:nx,y:ny}
-                            nilai++
-                            create_makanan()
-                        }else{
-                            var tambah_badan = badan.pop()
-                            tambah_badan.x = nx
-                            tambah_badan.y = ny
+                        for(){
+                            if(nx == makanan.x && ny==makanan.y){
+                                var tambah_badan = {x:nx,y:ny}
+                                nilai++
+                                create_makanan()
+                            }else{
+                                var tambah_badan = badan.pop()
+                                tambah_badan.x = nx
+                                tambah_badan.y = ny
+                            }
                         }
                         badan.unshift(tambah_badan)
 
@@ -118,9 +133,14 @@
                             var c = badan[i]
                             gambar_badan(c.x,c.y)
                         }
-
+                        detik++
+                        if(detik == batas_detik){
+                            batas_detik += 4
+                            waktu++
+                        }
                         gambar_badan(makanan.x,makanan.y)
                         document.getElementById('score').innerHTML = nilai
+                        document.getElementById('time').innerHTML = waktu
                  }
 
                  function gambar_badan(x,y){
@@ -131,10 +151,10 @@
                  }
 
                  function cek_tabrakan(x,y,array){
-                     for(i=0;i<array.length;i++){
-                        if(array[i].x == x && array[i].y == y)return true;
-                     }
-                     return false;
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i].x == x && array[i].y == y) return true;
+                    }
+                    return false;
                  }
 
                  document.addEventListener('keydown',function(e){
