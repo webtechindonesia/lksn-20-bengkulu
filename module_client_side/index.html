@@ -4,8 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 1000px;
+        }
+        .flex{
+            display: flex;
+            
+        }
+        .justify-beetwen{
+            justify-content: space-between;
+        }
+        .justify-center{
+            justify-content: center;
+        }
+        body{
+            background-color: #34495e;
+        }
+        .canvas{
+            margin-top: 20px;
+            background-color: turquoise;
+        }
+        h3,h1{
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="flex justify-beetwen">
+            <div>
+                <h3>Score</h3>
+                <h3 id="score">0</h3>
+            </div>
+            <div>
+                <h1>PYTHONS</h1>
+            </div>
+            <div>
+                <h3>Time</h3>
+                <h3 id="time">0:00:00</h3>
+            </div>
+        </div>
+        <div class="flex justify-center canvas">
+            <canvas id="canvas" width="960" height="600"></canvas>
+            <script>
+                var canvas = document.getElementById('canvas')
+                var context = canvas.getContext('2d');
+                var width_board = canvas.scrollWidth
+                var height_board = canvas.scrollHeight
+                var ukuran_kotak = 20;
+                var klik;
+                var makanan;
+                var nilai;
+                var waktu;
+                 function mulai(){
+                     klik = "kanan"
+                     create_python()
+                     create_makanan()
+                     nilai = 0
+                 }
+
+                 mulai()
+
+                 function create_python(){
+                     var cell_badan = 6;
+                     badan = []
+
+                     for(i=length-1; i>=0; i--){
+                        badan.push({x:i,y:0})
+                     }
+                 }
+
+                 function create_makanan(){
+                     makanan = {
+                         x: Math.round(Math.random() * (width_board - ukuran_kotak) / ukuran_kotak),
+                         y: Math.round(Math.random() * (height_board - ukuran_kotak) / ukuran_kotak)
+                     }
+                 }
+
+                 function gambar(){
+                     context.fillStyle='black';
+                     context.fillRect(0,0,width_board,height_board);
+                     var nx = badan[0].x
+                     var ny = badan[0].y
+                     if (tekan == "right") nx++;
+                        else if (tekan == "left") nx--;
+                        else if (tekan == "up") ny--;
+                        else if (tekan == "down") ny++;
+                        if(
+                            nx == widthCanvas / ukuran_badan ||
+                            ny == heightCanvas / ukuran_badan
+
+                        ){
+                            mulai()
+                            return 
+                        }
+                 }
+            </script>
+        </div>
+    </div>
 </body>
 </html>
