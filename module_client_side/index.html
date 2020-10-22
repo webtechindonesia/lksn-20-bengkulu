@@ -57,7 +57,7 @@
                 var height_board = canvas.scrollHeight
                 var ukuran_kotak = 20;
                 var klik;
-                var makanan = [];
+                var makanan = []
                 var nilai;
                 var waktu = 0;
                 var detik= 0;
@@ -115,17 +115,15 @@
                         }else if(ny == height_board / ukuran_kotak){
                             ny = 0
                         }
-
-                        for(){
+                        for(a=0; a < makanan.length; a++){
                             if(nx == makanan.x && ny==makanan.y){
-                                var tambah_badan = {x:nx,y:ny}
-                                nilai++
-                                create_makanan()
-                            }else{
-                                var tambah_badan = badan.pop()
-                                tambah_badan.x = nx
-                                tambah_badan.y = ny
-                            }
+                            var tambah_badan = {x:nx,y:ny}
+                            nilai++
+                            create_makanan()
+                        }else{
+                            var tambah_badan = badan.pop()
+                            tambah_badan.x = nx
+                            tambah_badan.y = ny
                         }
                         badan.unshift(tambah_badan)
 
@@ -133,12 +131,13 @@
                             var c = badan[i]
                             gambar_badan(c.x,c.y)
                         }
+                        gambar_badan(makanan.x,makanan.y)
+                        }
                         detik++
                         if(detik == batas_detik){
                             batas_detik += 4
                             waktu++
                         }
-                        gambar_badan(makanan.x,makanan.y)
                         document.getElementById('score').innerHTML = nilai
                         document.getElementById('time').innerHTML = waktu
                  }
