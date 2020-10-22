@@ -28,10 +28,6 @@
         body{
             background-color: #34495e;
         }
-        .canvas{
-            margin-top: 20px;
-            background-color: turquoise;
-        }
         h3,h1{
             color: white;
         }
@@ -69,6 +65,7 @@
                      create_python()
                      create_makanan()
                      nilai = 0
+                     setInterval(gambar,66)
                  }
 
                  mulai()
@@ -77,7 +74,7 @@
                      var cell_badan = 6;
                      badan = []
 
-                     for(i=length-1; i>=0; i--){
+                     for(i = cell_badan - 1; i >= 0; i--){
                         badan.push({x:i,y:0})
                      }
                  }
@@ -90,17 +87,16 @@
                  }
 
                  function gambar(){
-                     context.fillStyle='black';
-                     context.fillRect(0,0,width_board,height_board);
+                    context.fillStyle='green';
+                    context.fillRect(0,0,width_board,height_board);
                      var nx = badan[0].x
                      var ny = badan[0].y
-                     if (tekan == "right") nx++;
-                        else if (tekan == "left") nx--;
-                        else if (tekan == "up") ny--;
-                        else if (tekan == "down") ny++;
+                     if (klik == "kanan") nx++;
+                        else if (klik == "kiri") nx--;
+                        else if (klik == "atas") ny--;
+                        else if (klik == "bawah") ny++;
                         if(
-                            nx == widthCanvas / ukuran_kotak ||
-                            ny == heightCanvas / ukuran_kotak
+                            cek_tabrakan(nx,ny,badan)
 
                         ){
                             mulai()
@@ -116,7 +112,6 @@
                             tambah_badan.x = nx
                             tambah_badan.y = ny
                         }
-
                         badan.unshift(tambah_badan)
 
                         for(i=0;i<badan.length;i++){
@@ -134,6 +129,22 @@
                      context.strokeStyle='white';
                      context.strokeRect(x*ukuran_kotak,y*ukuran_kotak,ukuran_kotak,ukuran_kotak);
                  }
+
+                 function cek_tabrakan(x,y,array){
+                     for(i=0;i<array.length;i++){
+                        if(array[i].x == x && array[i].y == y)return true;
+                     }
+                     return false;
+                 }
+
+                 document.addEventListener('keydown',function(e){
+                     var keyboard = e.which
+                     if(keyboard == "37" && klik != "kanan") klik = "kiri";
+                        else if(keyboard == "38" && klik != "bawah") klik = "atas";
+                        else if(keyboard == "39" && klik != "kiri") klik = "kanan";
+                        else if(keyboard == "40" && klik != "atas") klik = "bawah";
+
+                 })
             </script>
         </div>
     </div>
