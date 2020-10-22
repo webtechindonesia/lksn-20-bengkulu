@@ -99,13 +99,40 @@
                         else if (tekan == "up") ny--;
                         else if (tekan == "down") ny++;
                         if(
-                            nx == widthCanvas / ukuran_badan ||
-                            ny == heightCanvas / ukuran_badan
+                            nx == widthCanvas / ukuran_kotak ||
+                            ny == heightCanvas / ukuran_kotak
 
                         ){
                             mulai()
                             return 
                         }
+
+                        if(nx == makanan.x && ny==makanan.y){
+                            var tambah_badan = {x:nx,y:ny}
+                            nilai++
+                            create_makanan()
+                        }else{
+                            var tambah_badan = badan.pop()
+                            tambah_badan.x = nx
+                            tambah_badan.y = ny
+                        }
+
+                        badan.unshift(tambah_badan)
+
+                        for(i=0;i<badan.length;i++){
+                            var c = badan[i]
+                            gambar_badan(c.x,c.y)
+                        }
+
+                        gambar_badan(makanan.x,makanan.y)
+                        document.getElementById('score').innerHTML = nilai
+                 }
+
+                 function gambar_badan(x,y){
+                     context.fillStyle='blue';
+                     context.fillRect(x*ukuran_kotak,y*ukuran_kotak,ukuran_kotak,ukuran_kotak)
+                     context.strokeStyle='white';
+                     context.strokeRect(x*ukuran_kotak,y*ukuran_kotak,ukuran_kotak,ukuran_kotak);
                  }
             </script>
         </div>
